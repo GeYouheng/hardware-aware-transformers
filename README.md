@@ -141,22 +141,30 @@ We also provide pre-trained SuperTransformers for the four tasks as below. To do
 #### 2. Evolutionary Search
 The second step of HAT is to perform an evolutionary search in the trained SuperTransformer with a hardware latency constraint in the loop. We train a latency predictor to get fast and accurate latency feedback.
 
-##### 2.1 Generate a latency dataset
+##### 2.1 Generate a latency/energy/power dataset
 ```bash
 python latency_dataset.py --configs=configs/[task_name]/latency_dataset/[hardware_name].yml
 # for example
 python latency_dataset.py --configs=configs/wmt14.en-de/latency_dataset/cpu_raspberrypi.yml
+# Generate a latency/energy/power dataset on GTX1080
+python latency_dataset.py --configs=configs/wmt14.en-de/latency_dataset/gpu_1080.yml
+python energy_dataset.py --configs=configs/wmt14.en-de/energy_dataset/gpu_1080.yml
+python power_dataset.py --configs=configs/wmt14.en-de/power_dataset/gpu_1080.yml
 ```
 `hardware_name` can be `cpu_raspberrypi`, `cpu_xeon` and `gpu_titanxp`. The `--configs` file contains the design space in which we sample models to get (model_architecture, real_latency) data pairs.
 
 We provide the datasets we collect in the [latency_dataset](./latency_dataset) folder.
 
-##### 2.2 Train a latency predictor
+##### 2.2 Train a latency/energy/power predictor
 Then train a predictor with collected dataset:
 ```bash
 python latency_predictor.py --configs=configs/[task_name]/latency_predictor/[hardware_name].yml
 # for example
 python latency_predictor.py --configs=configs/wmt14.en-de/latency_predictor/cpu_raspberrypi.yml
+# Train a latency/energy/power predictor on GTX1080
+python latency_predictor.py --configs=configs/wmt14.en-de/latency_predictor/gpu_1080.yml
+python energy_predictor.py --configs=configs/wmt14.en-de/energy_predictor/gpu_1080.yml
+python power_predictor.py --configs=configs/wmt14.en-de/power_predictor/gpu_1080.yml
 ```
 The `--configs` file contains the predictor's model architecture and training settings.
 We provide pre-trained predictors in [latency_dataset/predictors](./latency_dataset/predictors) folder.

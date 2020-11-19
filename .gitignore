@@ -1,0 +1,5 @@
+data/
+build/
+fairseq/
+.eggs/
+fairseq.egg-info/
