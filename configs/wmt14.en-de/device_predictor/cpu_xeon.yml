@@ -1,0 +1,10 @@
+lat-dataset-path: ./device_dataset/wmt14ende_cpu_xeon_all.csv
+feature-norm: [640, 6, 2048, 6, 640, 6, 2048, 6, 6, 2, 64, 64, 512, 8192, 1]
+lat-norm: 10000000
+feature-dim: 15
+hidden-dim: 400
+hidden-layer-num: 3
+ckpt-path: ./device_dataset/predictors/wmt14ende_cpu_xeon.pt
+train-steps: 5000
+bsz: 32
+lr: 1e-5
