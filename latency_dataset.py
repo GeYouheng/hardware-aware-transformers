@@ -34,6 +34,7 @@ def main(args):
     # Build model
     model = task.build_model(args)
     print(model)
+    
 
     # specify the length of the dummy input for profile
     # for iwslt, the average length is 23, for wmt, that is 30
@@ -77,7 +78,7 @@ def main(args):
 
             features = utils.get_config_features(config_sam)
             fid.write(','.join(map(str, features)) + ',')
-
+            
             model.set_sample_config(config_sam)
 
             # dry runs
