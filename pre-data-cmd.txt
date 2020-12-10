@@ -1,0 +1,5 @@
+python latency_dataset.py --configs=configs/wmt14.en-de/latency_dataset/cpu_xeon.yml
+# need to modify some parameters
+python device_augment_dataset.py --device-predictor-path=device_dataset/predictors/wmt14ende_cpu_xeon.pt --dataset-path=latency_dataset/wmt14ende_cpu_xeon_all.csv --augmented-path=latency_dataset/wmt14ende_cpu_xeon_augmented.csv
+python latency_evaluator.py  --configs=configs/wmt14.en-de/latency_predictor/cpu_xeon.yml
+python latency_evaluator.py  --configs=configs/wmt14.en-de/latency_predictor/cpu_xeon_augment.yml 
